@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Countdown Banner -->
+    <div id="countdown-banner">
+        <span>Countdown until Valentine's Day: <span id="timer"></span></span>
+    </div>
+
+    <h1>Our Shared Moments 💖</h1>
+    <div class="gallery" id="gallery">
+        <!-- Images will be dynamically added here -->
+    </div>
+
+    <!-- Bottom Navbar -->
+    <div class="bottom-navbar">
+        <a href="gallery.html">Image Gallery</a>
+        <a href="playlist.html">Music Playlist</a>
+        <a href="poems.html">Poems</a>
+        <a href="quiz.html">Quiz</a>
+    </div>
+
+    <script>
+        // JavaScript to dynamically load 70 images
+        window.onload = function() {
+            const gallery = document.getElementById('gallery');
+            for (let i = 1; i <= 70; i++) {
+                const img = document.createElement('img');
+                img.src = `images/image${i}.jpg`;
+                img.alt = `Moment ${i}`;
+                gallery.appendChild(img);
+            }
+        }
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

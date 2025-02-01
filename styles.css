@@ -1,0 +1,365 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+/* Reset Margin and Padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body.index-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 60px; /* Space for countdown banner */
+    padding-bottom: 60px; /* Space for bottom navbar */
+    height: 100vh; /* Ensure full page height for centering */
+    margin: 0;
+}
+
+h1.index-page {
+    text-align: center; /* Center the heading text */
+}
+
+/* Buttons Container */
+.buttons.index-page {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px;
+}
+
+body {
+    font-family: 'Pacifico', cursive;
+    background: #ffe6f2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 60px; /* Space for countdown banner */
+    padding-bottom: 60px; /* Space for bottom navbar */
+    margin: 0;
+}
+
+h1 {
+    color: #ff4d6a;
+    font-size: 2.5rem;
+    margin-top: 50px;
+    text-shadow: 2px 2px 5px rgba(255, 0, 100, 0.5);
+}
+
+.buttons {
+    margin-top: 20px;
+    display: flex; /* Use flexbox to align buttons horizontally */
+    justify-content: center;
+    gap: 20px; /* Adds space between the buttons */
+}
+.btn {
+    padding: 20px 40px;
+    font-size: 24px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+}
+.yes {
+    background: #ff4d6a;
+    color: white;
+}
+.yes:hover {
+    background: #e60039;
+    transform: scale(1.1) translateX(-20px);
+}
+.no {
+    background: #444;
+    color: white;
+    position: absolute;
+    left: calc(50% + 75px); /* Adjusting the position to the right */
+}
+.response {
+    position: absolute;
+    top: 20%; /* Center the response vertically */
+    left: 50%; /* Center the response horizontally */
+    transform: translate(-50%, -50%); /* Adjust for exact centering */
+    width: auto; /* Ensure text doesn't overflow */
+    font-size: 1.5rem;
+    color: #ff4d6a;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    display: none;
+}
+
+.heart {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background: red;
+    transform: rotate(45deg); /* Rotation fixed for the heart shape */
+    animation: float 5s infinite ease-in-out;
+}
+
+.heart::before,
+.heart::after {
+    content: '';
+    width: 50px;
+    height: 50px;
+    background: red;
+    border-radius: 50%;
+    position: absolute;
+}
+.heart::before {
+    top: -25px;
+    left: 0px;
+}
+
+.heart::after {
+    right: 25px;
+    top: 0px; /* Adjusted for correct positioning */
+}
+
+@keyframes float {
+    0% { transform: translateY(0) rotate(45deg); opacity: 1; }
+    50% { opacity: 0.8; }
+    100% { transform: translateY(-100vh) rotate(45deg); opacity: 0; }
+}
+
+.navbar {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.navbar a {
+    padding: 10px 20px;
+    background: #ff4d6a;
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-size: 1rem;
+    transition: 0.3s;
+}
+
+.navbar a:hover {
+    background: #e60039;
+}
+
+.quiz-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 8px;
+    background: #f8d1e3;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
+}
+
+.quiz-question {
+    margin-bottom: 30px;
+}
+
+.quiz-question p {
+    font-size: 1.25rem;
+    color: #444;
+}
+
+.quiz-question button {
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: 0.3s;
+}
+
+.quiz-question button.correct {
+    background: green;
+    color: white;
+}
+
+.quiz-question button.incorrect {
+    background: red;
+    color: white;
+}
+
+.quiz-question button:hover {
+    transform: scale(1.05);
+}
+
+.quiz-question .result {
+    margin-top: 10px;
+    font-size: 1rem;
+}
+
+.back-btn {
+    margin-top: 30px;
+    background: #ff4d6a;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.back-btn:hover {
+    background: #e60039;
+}
+
+/* Countdown Banner */
+#countdown-banner {
+    background: #ff4d6a;
+    color: white;
+    padding: 10px;
+    font-size: 1.2rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    text-align: center;
+}
+
+/* Bottom Navbar */
+.bottom-navbar {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    font-size: 1rem;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #ff4d6a;
+    padding: 15px;
+    z-index: 10;
+}
+
+.bottom-navbar a {
+    padding: 10px 20px;
+    background: #e60039;
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+}
+
+.bottom-navbar a:hover {
+    background: #ff4d6a;
+}
+
+/* Poem Section */
+.poem-section {
+    display: flex;
+    width: 100%;
+    max-width: 1200px;
+    margin-top: 30px;
+}
+
+/* Left Sidebar (for the poem titles) */
+.sidebar-navbar {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    font-size: 1rem;
+    width: 200px;
+    background: #ff4d6a;
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+    position: sticky;
+    top: 150px;
+}
+
+.sidebar-navbar a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.sidebar-navbar a:hover {
+    color: #e60039;
+}
+
+.sidebar-navbar .date {
+    font-size: 0.9rem;
+    font-weight: normal;
+}
+
+/* Poem Display Section */
+.poem-container {
+    flex: 1;
+    margin-left: 220px;
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.poem {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    max-width: 800px;
+    width: 100%;
+    font-size: 1.25rem;
+    color: #444;
+    line-height: 1.6;
+    position: relative;
+}
+
+.poem::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    width: 100%;
+    height: 100%;
+    background: #f2f2f2;
+    z-index: -1;
+    border-radius: 10px;
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Playlist Section */
+.playlist-container {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column; /* Stack videos vertically */
+    gap: 20px; /* Space between videos */
+    overflow-y: auto; /* Allow scrolling vertically */
+    max-height: 80vh; /* Adjust the max height to fit content */
+}
+
+/* Individual Video Container */
+.playlist-video {
+    width: 100%; /* Make videos take up the full width of the container */
+    height: 0;
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio (1080/1920 = 0.5625) */
+    background-color: #f8d1e3; /* Optional: Add background color for styling */
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Video Embed */
+.playlist-video iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px; /* Keep the video corners rounded */
+}
+
+

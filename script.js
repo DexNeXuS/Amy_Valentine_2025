@@ -149,22 +149,56 @@ function createHearts() {
 }
 createHearts();
 
-// Quiz data
 const quizData = [
     {
-        question: "What is my favorite color?",
-        options: ["Red", "Blue", "Green", "Pink"],
-        answer: "Red"
+        question: "What’s your all-time favorite movie?",
+        options: ["The Matrix", "Mars Attacks", "Pulp Fiction", "Back to the Future"],
+        answer: "Mars Attacks"
     },
     {
-        question: "Where did we go on our first date?",
-        options: ["Cinema", "Beach", "Restaurant", "Park"],
-        answer: "Restaurant"
+        question: "If you could live anywhere in the world, where would it be?",
+        options: ["New York", "Japan", "Australia", "Iceland"],
+        answer: "Japan"
     },
     {
-        question: "What is my favorite food?",
-        options: ["Pizza", "Sushi", "Pasta", "Tacos"],
-        answer: "Pizza"
+        question: "What’s the most adventurous thing you’ve ever done?",
+        options: ["Skydiving", "Scuba diving", "Band Tour", "Climbing a mountain"],
+        answer: "Band Tour"
+    },
+    {
+        question: "If you could meet any historical figure, who would it be?",
+        options: ["Julius Caesar", "Albert Einstein", "Adolf Hitler", "Leonardo da Vinci"],
+        answer: "Adolf Hitler"
+    },
+    {
+        question: "What’s your go-to comfort food when you are feeling down?",
+        options: ["Pizza", "Sushi", "McDonalds", "Chocolate cake"],
+        answer: "McDonalds"
+    },
+    {
+        question: "What’s one thing you’ve always wanted to learn but haven’t yet?",
+        options: ["Playing the violin", "Electrical Engineering", "Cooking gourmet meals", "Speaking French"],
+        answer: "Electrical Engineering"
+    },
+    {
+        question: "If you could have any superpower, which one would you choose?",
+        options: ["Flying", "Time Travel", "Super Strength", "Invisibility"],
+        answer: "Time Travel"
+    },
+    {
+        question: "What's your dream job or career?",
+        options: ["Doctor", "Coding", "Astronaut", "Music Producer"],
+        answer: "Coding"
+    },
+    {
+        question: "If you could time travel, which period in history would you visit?",
+        options: ["The Roaring 1920s", "The Future", "Ancient Egypt", "The Middle Ages"],
+        answer: "The Future"
+    },
+    {
+        question: "What’s one of the most memorable vacations you've been on?",
+        options: ["Road trip across Europe", "Backpacking in South America", "Edinburgh with Amy", "Beach holiday in Bali"],
+        answer: "Edinburgh with Amy"
     }
 ];
 
@@ -174,6 +208,8 @@ let incorrectAnswers = 0;
 // Load Quiz
 function loadQuiz() {
     const quizContainer = document.getElementById('quiz-container');
+    quizContainer.innerHTML = ""; // Clear previous content if reloading
+
     quizData.forEach((item, index) => {
         const questionElement = document.createElement('div');
         questionElement.classList.add('quiz-question');
@@ -188,36 +224,75 @@ function loadQuiz() {
     });
 }
 
-// Check Answer
 function checkAnswer(button, correctAnswer, questionIndex) {
     const resultElement = document.getElementById(`result-${questionIndex}`);
-    // Prevent further clicks after selecting an answer
     const buttons = button.parentElement.querySelectorAll('button');
+
+    // Disable all buttons after selection
     buttons.forEach(btn => btn.disabled = true);
 
-    if (button.innerText === correctAnswer) {
+    // Normalize text (trim and lowercase to avoid mismatches)
+    if (button.innerText.trim().toLowerCase() === correctAnswer.trim().toLowerCase()) {
         button.classList.add('correct');
         resultElement.innerText = "Correct! 🎉";
         resultElement.style.color = "green";
         correctAnswers++;
     } else {
         button.classList.add('incorrect');
-        resultElement.innerText = "Oops! Try again.";
+        resultElement.innerText = `Oops! The correct answer was: ${correctAnswer}`;
         resultElement.style.color = "red";
         incorrectAnswers++;
     }
 
-    // Display the tally after all questions
-    if (questionIndex === quizData.length - 1) {
+    // Show final score in the webpage after last question
+    if (correctAnswers + incorrectAnswers === quizData.length) {
         setTimeout(() => {
-            const tally = document.createElement('div');
-            tally.innerHTML = `
-                <h2>Quiz Results</h2>
-                <p>You got ${correctAnswers} correct and ${incorrectAnswers} incorrect.</p>
+            const quizContainer = document.getElementById('quiz-container');
+
+            // Create a result summary
+            const resultSummary = document.createElement('div');
+            resultSummary.classList.add('quiz-results');
+            resultSummary.innerHTML = `
+                <h2>Quiz Completed!</h2>
+                <p>You scored <strong>${correctAnswers}</strong> out of <strong>${quizData.length}</strong>.</p>
             `;
-            quizContainer.appendChild(tally);
+
+            // Append results to the quiz container
+            quizContainer.appendChild(resultSummary);
         }, 500);
     }
 }
 
+
 loadQuiz();
+
+const gallery = document.querySelector('#gallery');
+
+// Create an array of image filenames (you can extend it with more)
+const images = [];
+
+for (let i = 1; i <= 100; i++) {
+    images.push(`image${i}.jpg`);
+}
+
+// Function to load images into the gallery
+function loadImages() {
+    images.forEach(image => {
+        const imgElement = document.createElement('img');
+        imgElement.src = `images/${image}`; // Adjust if needed based on your folder structure
+        imgElement.alt = `Moment ${image}`;
+        imgElement.classList.add('gallery-item');
+
+        // Add hover effect when hovering over images
+        imgElement.addEventListener('click', () => {
+            imgElement.classList.toggle('active');
+        });
+
+        gallery.appendChild(imgElement);
+    });
+}
+
+// Initial call to load images when the page is loaded
+loadImages();
+
+
